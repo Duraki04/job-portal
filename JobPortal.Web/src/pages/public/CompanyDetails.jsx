@@ -8,7 +8,7 @@ import {
   RefreshCw,
   Globe,
 } from "lucide-react";
-import { apiFetch } from "../../api/http";
+import { api } from "../../api/http"; // ✅ axios instance
 import JobCard from "../../components/JobCard";
 
 function Skeleton() {
@@ -97,11 +97,11 @@ export default function CompanyDetails() {
     setCompany(null);
 
     try {
-      // ✅ MUST match backend: GET /api/Company/{id}
-      const res = await apiFetch(`/api/Company/${id}`);
-      setCompany(res);
+      // ✅ Swagger: GET /api/Company/{id}
+      const res = await api.get(`/api/Company/${id}`);
+      setCompany(res.data ?? null);
     } catch (e) {
-      setErr(e.message || "Failed to load company.");
+      setErr(e?.message || "Failed to load company.");
       setCompany(null);
     } finally {
       setLoading(false);
@@ -123,7 +123,9 @@ export default function CompanyDetails() {
             <div className="text-sm font-extrabold text-rose-100">
               Could not load company
             </div>
-            <div className="mt-1 text-sm text-rose-200/90">{err}</div>
+            <div className="mt-1 text-sm text-rose-200/90 whitespace-pre-line">
+              {err}
+            </div>
           </div>
           <button className="btn-ghost" onClick={loadCompany} type="button">
             <RefreshCw className="h-4 w-4" />
@@ -177,7 +179,9 @@ export default function CompanyDetails() {
             </h1>
 
             <div className="mt-3 flex flex-wrap items-center gap-2">
-              <span className="badge">{companyIndustry || "Industry not set"}</span>
+              <span className="badge">
+                {companyIndustry || "Industry not set"}
+              </span>
               <span className="badge inline-flex items-center gap-2">
                 <MapPin className="h-4 w-4" />
                 {companyCity || "City not set"}
@@ -263,3 +267,4 @@ export default function CompanyDetails() {
     </div>
   );
 }
+

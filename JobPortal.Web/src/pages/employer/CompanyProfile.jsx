@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { apiFetch } from "../../api/http";
+import { api } from "../../api/http";
 import {
   Building2,
   MapPin,
@@ -43,7 +43,8 @@ export default function CompanyProfile() {
     if (name.trim().length < 2) return "Company name is required.";
     if (city.trim().length < 2) return "City is required.";
     if (industry.trim().length < 2) return "Industry is required.";
-    if (description.trim().length < 20) return "Description is too short (min 20 chars).";
+    if (description.trim().length < 20)
+      return "Description is too short (min 20 chars).";
     return "";
   }, [name, city, industry, description]);
 
@@ -53,15 +54,16 @@ export default function CompanyProfile() {
     setLoading(true);
 
     try {
-      // ✅ CHANGE HERE if needed:
-      const c = await apiFetch("/api/company/me", { auth: true });
+      // ✅ Swagger: GET /api/Company/me
+      const res = await api.get("/api/Company/me");
+      const c = res.data;
 
       setName(c?.name ?? "");
       setCity(c?.city ?? "");
       setIndustry(c?.industry ?? "");
       setDescription(c?.description ?? "");
     } catch (e) {
-      setErr(e.message || "Failed to load company profile.");
+      setErr(e?.message || "Failed to load company profile.");
     } finally {
       setLoading(false);
     }
@@ -90,12 +92,12 @@ export default function CompanyProfile() {
         description: description.trim(),
       };
 
-      // ✅ CHANGE HERE if needed:
-      await apiFetch("/api/company/me", { method: "PUT", auth: true, body });
+      // ✅ Swagger: PUT /api/Company/me
+      await api.put("/api/Company/me", body);
 
       setOk("Company profile updated successfully!");
     } catch (e) {
-      setErr(e.message || "Failed to update company profile.");
+      setErr(e?.message || "Failed to update company profile.");
     } finally {
       setSaving(false);
     }
@@ -135,7 +137,7 @@ export default function CompanyProfile() {
           </div>
 
           {err && (
-            <div className="mt-5 rounded-2xl border border-rose-500/30 bg-rose-500/10 p-4 text-sm text-rose-100">
+            <div className="mt-5 rounded-2xl border border-rose-500/30 bg-rose-500/10 p-4 text-sm text-rose-100 whitespace-pre-line">
               {err}
             </div>
           )}
@@ -202,10 +204,10 @@ export default function CompanyProfile() {
                 </div>
                 <textarea
                   className="min-h-[170px] w-full resize-none bg-transparent text-sm text-slate-100 outline-none placeholder:text-slate-400"
-                  placeholder="Example:
+                  placeholder={`Example:
 We are a company focused on...
 We offer...
-Our culture..."
+Our culture...`}
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                 />
@@ -257,3 +259,4 @@ Our culture..."
     </div>
   );
 }
+

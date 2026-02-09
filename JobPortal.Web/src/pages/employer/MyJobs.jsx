@@ -9,7 +9,7 @@ import {
   MapPin,
   ArrowRight,
 } from "lucide-react";
-import { apiFetch } from "../../api/http";
+import { api } from "../../api/http";
 
 function RowSkeleton() {
   return (
@@ -50,15 +50,18 @@ export default function MyJobs() {
 
     try {
       // 1) Merr kompaninë time (Employer)
-      const company = await apiFetch("/api/Company/me", { auth: true });
-      setMeCompany(company);
+      const companyRes = await api.get("/api/Company/me");
+      const company = companyRes.data;
+      setMeCompany(company ?? null);
 
       // 2) Merr të gjitha jobs (public endpoint)
-      const jobs = await apiFetch("/api/Job", { auth: false });
-      const list = jobs?.items ?? jobs?.data ?? jobs ?? [];
+      const jobsRes = await api.get("/api/Job");
+      const jobsData = jobsRes.data;
+
+      const list = jobsData?.items ?? jobsData?.data ?? jobsData ?? [];
       setAllJobs(Array.isArray(list) ? list : []);
     } catch (e) {
-      setErr(e.message || "Failed to load jobs.");
+      setErr(e?.message || "Failed to load jobs.");
       setMeCompany(null);
       setAllJobs([]);
     } finally {
@@ -79,6 +82,9 @@ export default function MyJobs() {
     // ✅ filtro vetëm job-et e kompanisë time
     if (myCompanyId) {
       list = list.filter((j) => j.companyId === myCompanyId);
+    } else {
+      // nëse s’kemi kompani (p.sh. 401), mos shfaq asgjë
+      list = [];
     }
 
     // search
@@ -88,18 +94,28 @@ export default function MyJobs() {
         const title = (j?.title || "").toLowerCase();
         const city = (j?.city || "").toLowerCase();
         const desc = (j?.description || "").toLowerCase();
-        return title.includes(query) || city.includes(query) || desc.includes(query);
+        return (
+          title.includes(query) ||
+          city.includes(query) ||
+          desc.includes(query)
+        );
       });
     }
 
     // sort
     if (sort === "name") {
-      list.sort((a, b) => String(a?.title || "").localeCompare(String(b?.title || "")));
+      list.sort((a, b) =>
+        String(a?.title || "").localeCompare(String(b?.title || ""))
+      );
     } else if (sort === "oldest") {
-      list.sort((a, b) => new Date(a?.createdAt || 0) - new Date(b?.createdAt || 0));
+      list.sort(
+        (a, b) => new Date(a?.createdAt || 0) - new Date(b?.createdAt || 0)
+      );
     } else {
       // newest default
-      list.sort((a, b) => new Date(b?.createdAt || 0) - new Date(a?.createdAt || 0));
+      list.sort(
+        (a, b) => new Date(b?.createdAt || 0) - new Date(a?.createdAt || 0)
+      );
     }
 
     return list;
@@ -110,11 +126,10 @@ export default function MyJobs() {
     if (!ok) return;
 
     try {
-      await apiFetch(`/api/Job/${jobId}`, { method: "DELETE", auth: true });
-      // refresh list
+      await api.delete(`/api/Job/${jobId}`);
       await load();
     } catch (e) {
-      alert(e.message || "Failed to delete job.");
+      alert(e?.message || "Failed to delete job.");
     }
   }
 
@@ -133,7 +148,8 @@ export default function MyJobs() {
 
         <div className="flex flex-wrap items-center gap-2">
           <Badge>
-            Company: <span className="ml-1 text-white">{meCompany?.name || "—"}</span>
+            Company:{" "}
+            <span className="ml-1 text-white">{meCompany?.name || "—"}</span>
           </Badge>
           <Badge>
             Total: <span className="ml-1 text-white">{myJobs.length}</span>
@@ -188,7 +204,9 @@ export default function MyJobs() {
               <div className="text-sm font-extrabold text-rose-100">
                 Could not load jobs
               </div>
-              <div className="mt-1 text-sm text-rose-200/90">{err}</div>
+              <div className="mt-1 text-sm text-rose-200/90 whitespace-pre-line">
+                {err}
+              </div>
             </div>
             <button className="btn-ghost" onClick={load} type="button">
               <RefreshCw className="h-4 w-4" />
@@ -210,7 +228,10 @@ export default function MyJobs() {
             <p className="mt-2 text-sm text-slate-300">
               Create your first job posting to start receiving applications.
             </p>
-            <Link to="/employer/post-job" className="btn-primary mt-5 inline-flex">
+            <Link
+              to="/employer/post-job"
+              className="btn-primary mt-5 inline-flex"
+            >
               <Plus className="h-4 w-4" />
               Post a Job
             </Link>
@@ -239,7 +260,9 @@ export default function MyJobs() {
                         <span className="badge">
                           {job.isRemote ? "Remote" : "On-site"}
                         </span>
-                        <span className="badge">{job.employmentType || "Full-Time"}</span>
+                        <span className="badge">
+                          {job.employmentType || "Full-Time"}
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -252,7 +275,7 @@ export default function MyJobs() {
                     <Badge>
                       Salary:{" "}
                       <span className="ml-1 text-white">
-                        {job.salaryMin} – {job.salaryMax}
+                        {job.salaryMin ?? "—"} – {job.salaryMax ?? "—"}
                       </span>
                     </Badge>
 

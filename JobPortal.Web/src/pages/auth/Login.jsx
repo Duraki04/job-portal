@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { apiFetch } from "../../api/http";
+import { api } from "../../api/http"; // ✅ axios instance (mos e ndrysho http.js)
 import { useAuth } from "../../context/AuthContext";
 import { Eye, EyeOff, LogIn, ShieldCheck } from "lucide-react";
 
@@ -27,6 +27,30 @@ export default function Login() {
     else navigate("/", { replace: true });
   }
 
+  function getAxiosErrorMessage(ex) {
+    // http.js e kthen shpesh Error(message) nga interceptors,
+    // por po e bëjmë safe për çdo rast:
+    if (ex?.message && typeof ex.message === "string") return ex.message;
+
+    const data = ex?.response?.data;
+
+    if (data?.errors && typeof data.errors === "object") {
+      const lines = Object.entries(data.errors)
+        .flatMap(([field, msgs]) =>
+          (Array.isArray(msgs) ? msgs : [msgs]).map((m) => `${field}: ${m}`)
+        );
+      const msg = lines.join("\n");
+      if (msg) return msg;
+    }
+
+    return (
+      data?.message ||
+      data?.title ||
+      data?.detail ||
+      `Login failed.`
+    );
+  }
+
   async function handleSubmit(e) {
     e.preventDefault();
     setErr("");
@@ -45,24 +69,30 @@ export default function Login() {
 
     setLoading(true);
     try {
-      // Expected response: { token, role, fullName, userId? }
-      const res = await apiFetch("/api/auth/login", {
-        method: "POST",
-        body: { email: eMail, password: pass },
+      // ✅ Expected response: { token, role, fullName, userId? }
+      const res = await api.post("/api/Auth/login", {
+        email: eMail,
+        password: pass,
       });
 
-      // If backend doesn't return userId, we still store role/fullName.
+      const data = res?.data ?? {};
+
       const payload = {
-        token: res.token,
-        role: res.role,
-        fullName: res.fullName,
-        userId: res.userId ?? 0,
+        token: data.token,
+        role: data.role,
+        fullName: data.fullName,
+        userId: data.userId ?? 0,
       };
+
+      // guard nëse backend s’kthen token
+      if (!payload.token) {
+        throw new Error("Token missing from response.");
+      }
 
       login(payload);
       goDashboard(payload.role);
     } catch (ex) {
-      setErr(ex.message || "Login failed.");
+      setErr(getAxiosErrorMessage(ex));
     } finally {
       setLoading(false);
     }
@@ -87,7 +117,7 @@ export default function Login() {
         {/* Card */}
         <div className="mt-6 rounded-[32px] border border-white/10 bg-white/5 p-6 backdrop-blur sm:p-7">
           {err && (
-            <div className="mb-4 rounded-2xl border border-rose-500/30 bg-rose-500/10 p-4 text-sm text-rose-100">
+            <div className="mb-4 rounded-2xl border border-rose-500/30 bg-rose-500/10 p-4 text-sm text-rose-100 whitespace-pre-line">
               {err}
             </div>
           )}
@@ -121,12 +151,14 @@ export default function Login() {
                   className="rounded-xl border border-white/10 bg-white/5 p-2 text-slate-200 hover:bg-white/10"
                   aria-label={show ? "Hide password" : "Show password"}
                 >
-                  {show ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                  {show ? (
+                    <EyeOff className="h-4 w-4" />
+                  ) : (
+                    <Eye className="h-4 w-4" />
+                  )}
                 </button>
               </div>
-              <div className="helper mt-2">
-                Minimum 6 characters.
-              </div>
+              <div className="helper mt-2">Minimum 6 characters.</div>
             </div>
 
             <button
@@ -152,11 +184,12 @@ export default function Login() {
             </Link>
           </div>
 
-          {/* Demo hint */}
+          {/* Note */}
           <div className="mt-6 rounded-2xl border border-white/10 bg-white/5 p-4">
             <div className="text-xs font-semibold text-slate-200">Note</div>
             <div className="mt-1 text-xs text-slate-400">
-              If you get 401, make sure the API base URL is correct in <span className="text-slate-200 font-semibold">.env</span> and CORS is enabled on backend.
+              If you get 401, make sure the API base URL is correct in{" "}
+              <span className="text-slate-200 font-semibold">.env</span> and CORS is enabled on backend.
             </div>
           </div>
         </div>

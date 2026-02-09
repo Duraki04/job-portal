@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { apiFetch } from "../../api/http";
+import { api } from "../../api/http";
 import {
   User,
   MapPin,
@@ -58,30 +58,49 @@ export default function CandidateProfile() {
       .slice(0, 12);
   }, [allSkills, skillQuery]);
 
+  // --- helpers ---
+  function getToken() {
+    return localStorage.getItem("token");
+  }
+  function authHeaders() {
+    const token = getToken();
+    return token ? { Authorization: `Bearer ${token}` } : {};
+  }
+
   async function load() {
     setErr("");
     setOk("");
     setLoading(true);
 
     try {
-      // profile
-      const p = await apiFetch("/api/Candidate/me", { auth: true });
+      const headers = authHeaders();
+
+      // ✅ Swagger: GET /api/Candidate/me
+      const pRes = await api.get("/api/Candidate/me", { headers });
+      const p = pRes.data;
 
       setCity(p?.city ?? "");
       setExperienceLevel(p?.experienceLevel ?? "");
       setCvUrl(p?.cvUrl ?? p?.cvURL ?? "");
 
-      // skills list
-      const skillsRes = await apiFetch("/api/Skill", { auth: true });
-      const list = skillsRes?.items ?? skillsRes?.data ?? skillsRes ?? [];
+      // ✅ Swagger: GET /api/Skill (publik zakonisht, por s’prish punë edhe me auth)
+      const skillsRes = await api.get("/api/Skill", { headers });
+      const skillsData = skillsRes.data;
+      const list = skillsData?.items ?? skillsData?.data ?? skillsData ?? [];
       setAllSkills(Array.isArray(list) ? list : []);
 
-      // ✅ selected skills (from endpoint that actually exists now)
-      const mySkills = await apiFetch("/api/Candidate/me/skills", { auth: true });
-      const mySkillIds = Array.isArray(mySkills) ? mySkills.map((x) => x.id) : [];
-      setSelectedSkillIds(mySkillIds);
+      // ✅ Swagger: GET /api/Candidate/me/skills
+      const mySkillsRes = await api.get("/api/Candidate/me/skills", { headers });
+      const mySkills = mySkillsRes.data;
+
+      // support: array of skill objects, or {skillIds:[...]} etc.
+      let mySkillIds = [];
+      if (Array.isArray(mySkills)) mySkillIds = mySkills.map((x) => x.id);
+      else if (Array.isArray(mySkills?.skillIds)) mySkillIds = mySkills.skillIds;
+
+      setSelectedSkillIds(mySkillIds.filter((x) => typeof x === "number"));
     } catch (e) {
-      setErr(e.message || "Failed to load profile.");
+      setErr(e?.response?.data?.message || e?.message || "Failed to load profile.");
     } finally {
       setLoading(false);
     }
@@ -93,10 +112,7 @@ export default function CandidateProfile() {
   }, []);
 
   function addSkill(id) {
-    setSelectedSkillIds((prev) => {
-      if (prev.includes(id)) return prev;
-      return [...prev, id];
-    });
+    setSelectedSkillIds((prev) => (prev.includes(id) ? prev : [...prev, id]));
   }
 
   function removeSkill(id) {
@@ -115,23 +131,22 @@ export default function CandidateProfile() {
 
     setSaving(true);
     try {
-      // update profile
-      await apiFetch("/api/Candidate/me", {
-        method: "PUT",
-        auth: true,
-        body: payload,
-      });
+      const headers = authHeaders();
 
-      // update skills
-      await apiFetch("/api/Candidate/me/skills", {
-        method: "PUT",
-        auth: true,
-        body: { skillIds: selectedSkillIds },
-      });
+      // ✅ Swagger: PUT /api/Candidate/me
+      await api.put("/api/Candidate/me", payload, { headers });
+
+      // ✅ Swagger: PUT /api/Candidate/me/skills
+      // Swagger schema e ka UpdateMySkillsRequest -> zakonisht { skillIds: [...] }
+      await api.put(
+        "/api/Candidate/me/skills",
+        { skillIds: selectedSkillIds },
+        { headers }
+      );
 
       setOk("Profile updated successfully!");
     } catch (e) {
-      setErr(e.message || "Failed to save profile.");
+      setErr(e?.response?.data?.message || e?.message || "Failed to save profile.");
     } finally {
       setSaving(false);
     }
@@ -175,7 +190,12 @@ export default function CandidateProfile() {
           </p>
 
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-            <button className="btn-primary" onClick={saveProfile} disabled={saving} type="button">
+            <button
+              className="btn-primary"
+              onClick={saveProfile}
+              disabled={saving}
+              type="button"
+            >
               <Save className="h-4 w-4" />
               {saving ? "Saving..." : "Save changes"}
             </button>
@@ -186,7 +206,7 @@ export default function CandidateProfile() {
           </div>
 
           {err && (
-            <div className="mt-5 rounded-2xl border border-rose-500/30 bg-rose-500/10 p-4 text-sm text-rose-100">
+            <div className="mt-5 rounded-2xl border border-rose-500/30 bg-rose-500/10 p-4 text-sm text-rose-100 whitespace-pre-line">
               {err}
             </div>
           )}

@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { apiFetch } from "../../api/http";
+import { api } from "../../api/http";
 import {
   PlusCircle,
   BriefcaseBusiness,
@@ -50,9 +50,9 @@ export default function PostJob() {
 
     if (min !== null && min < 0) return "Salary min cannot be negative.";
     if (max !== null && max < 0) return "Salary max cannot be negative.";
-    if (min !== null && max !== null && min > max) return "Salary min cannot be greater than max.";
+    if (min !== null && max !== null && min > max)
+      return "Salary min cannot be greater than max.";
 
-    // expiresAt optional: if present, must be in future-ish (client-side soft check)
     if (expiresAt) {
       const dt = new Date(expiresAt + "T00:00:00");
       if (Number.isNaN(dt.getTime())) return "Invalid expiry date.";
@@ -93,25 +93,26 @@ export default function PostJob() {
         city: city.trim(),
         isRemote,
         employmentType,
-        salaryMin: toNumber(salaryMin) ?? 0,
-        salaryMax: toNumber(salaryMax) ?? 0,
+        // nëse i lë bosh, dërgo null (më mirë se 0)
+        salaryMin: toNumber(salaryMin),
+        salaryMax: toNumber(salaryMax),
         description: description.trim(),
-        // backend entity e ka nullable DateTime? ExpiresAt
-        expiresAt: expiresAt ? new Date(expiresAt + "T00:00:00").toISOString() : null,
+        expiresAt: expiresAt
+          ? new Date(expiresAt + "T00:00:00").toISOString()
+          : null,
       };
 
-      // ✅ CHANGE HERE if your endpoint is different:
-      // /api/job  OR /api/jobs
-      const created = await apiFetch("/api/job", { method: "POST", auth: true, body });
+      // ✅ Swagger: POST /api/Job
+      const res = await api.post("/api/Job", body);
+      const created = res.data;
 
       setOk("Job created successfully!");
       const newId = created?.id;
 
-      // Redirect: MyJobs or JobDetails
       if (newId) navigate(`/jobs/${newId}`, { replace: true });
       else navigate("/employer/jobs", { replace: true });
     } catch (ex) {
-      setErr(ex.message || "Failed to create job.");
+      setErr(ex?.message || "Failed to create job.");
     } finally {
       setLoading(false);
     }
@@ -155,7 +156,7 @@ export default function PostJob() {
 
       {/* Errors / Success */}
       {err && (
-        <div className="rounded-3xl border border-rose-500/30 bg-rose-500/10 p-5 text-sm text-rose-100">
+        <div className="rounded-3xl border border-rose-500/30 bg-rose-500/10 p-5 text-sm text-rose-100 whitespace-pre-line">
           {err}
         </div>
       )}
@@ -259,11 +260,11 @@ export default function PostJob() {
                 </div>
                 <textarea
                   className="min-h-[180px] w-full resize-none bg-transparent text-sm text-slate-100 outline-none placeholder:text-slate-400"
-                  placeholder="Example:
+                  placeholder={`Example:
 - Responsibilities: ...
 - Requirements: ...
 - Nice to have: ...
-- Benefits: ..."
+- Benefits: ...`}
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                 />
@@ -315,7 +316,12 @@ export default function PostJob() {
                 {loading ? "Posting..." : "Publish Job"}
               </button>
 
-              <button className="btn-ghost" type="button" onClick={resetForm} disabled={loading}>
+              <button
+                className="btn-ghost"
+                type="button"
+                onClick={resetForm}
+                disabled={loading}
+              >
                 <RefreshCw className="h-4 w-4" />
                 Reset form
               </button>

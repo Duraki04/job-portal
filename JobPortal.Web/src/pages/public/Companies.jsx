@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { Building2, MapPin, Search, RefreshCw } from "lucide-react";
-import { apiFetch } from "../../api/http";
+import { api } from "../../api/http"; // ✅ axios instance
 
 const PAGE_SIZE = 9;
 
@@ -73,19 +73,16 @@ export default function Companies() {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
 
-  // ✅ ruajmë krejt listën
   const [all, setAll] = useState([]);
 
   async function load() {
     setErr("");
     setLoading(true);
     try {
-      // ✅ FIX: backend endpoint
-      const res = await apiFetch("/api/Company");
-      const list = res?.items ?? res?.data ?? res ?? [];
-      setAll(Array.isArray(list) ? list : []);
+      const res = await api.get("/api/Company");
+      setAll(Array.isArray(res.data) ? res.data : []);
     } catch (e) {
-      setErr(e.message || "Failed to load companies.");
+      setErr(e?.message || "Failed to load companies.");
       setAll([]);
     } finally {
       setLoading(false);
@@ -97,7 +94,6 @@ export default function Companies() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // ✅ search + sort (client-side)
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
     let list = Array.isArray(all) ? [...all] : [];
@@ -117,7 +113,6 @@ export default function Companies() {
       });
     }
 
-    // sort by name
     list.sort((a, b) =>
       String(a?.name || "").localeCompare(String(b?.name || ""))
     );
@@ -137,12 +132,10 @@ export default function Companies() {
     return filtered.slice(start, start + PAGE_SIZE);
   }, [filtered, page]);
 
-  // ✅ nëse search ndryshon, kthehu në page 1
   useEffect(() => {
     setPage(1);
   }, [search]);
 
-  // ✅ nëse page del jashtë totalPages (p.sh. pas search), korrigjo
   useEffect(() => {
     setPage((p) => Math.min(Math.max(1, p), totalPages));
   }, [totalPages]);
@@ -196,7 +189,9 @@ export default function Companies() {
               <div className="text-sm font-extrabold text-rose-100">
                 Could not load companies
               </div>
-              <div className="mt-1 text-sm text-rose-200/90">{err}</div>
+              <div className="mt-1 text-sm text-rose-200/90 whitespace-pre-line">
+                {err}
+              </div>
             </div>
             <button className="btn-ghost" onClick={load} type="button">
               <RefreshCw className="h-4 w-4" />

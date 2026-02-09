@@ -21,7 +21,9 @@ function formatSalary(min, max) {
 export default function JobCard({ job }) {
   const j = job || {};
 
-  const id = j.id;
+  // ✅ normalize id to number
+  const id = Number(j.id) || 0;
+
   const title = safeText(j.title, "Job Title");
   const city = safeText(j.city, "—");
   const companyName = safeText(j.companyName, "Company");
@@ -35,23 +37,12 @@ export default function JobCard({ job }) {
     [j.salaryMin, j.salaryMax]
   );
 
-  // ✅ Wishlist (safe)
+  // ✅ Wishlist (now: wishlist is array of jobIds)
   const { wishlist, toggle } = useWishlist();
 
   const inWishlist = useMemo(() => {
     if (!id) return false;
-    if (!wishlist) return false;
-
-    // If it's a Set:
-    if (typeof wishlist?.has === "function") return wishlist.has(id);
-
-    // If it's an Array:
-    if (Array.isArray(wishlist)) return wishlist.includes(id);
-
-    // If it's an Object: { [id]: true }
-    if (typeof wishlist === "object") return Boolean(wishlist[id]);
-
-    return false;
+    return Array.isArray(wishlist) && wishlist.includes(id);
   }, [wishlist, id]);
 
   const jobLink = id ? `/jobs/${id}` : "/jobs";

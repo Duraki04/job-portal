@@ -1,59 +1,51 @@
-const BASE_URL =
-  (import.meta.env.VITE_API_BASE_URL || "http://localhost:5116").replace(/\/$/, "");
+import axios from "axios";
 
-async function parseError(res) {
-  const contentType = res.headers.get("content-type") || "";
+const BASE_URL = (
+  import.meta.env.VITE_API_BASE_URL ||
+  "https://jobportal-api-2026-d9ezffcfh8dhdnfw.westeurope-01.azurewebsites.net"
+)
+  .trim()
+  .replace(/\/+$/, "");
 
-  try {
-    if (contentType.includes("application/json")) {
-      const data = await res.json();
+export const api = axios.create({
+  baseURL: BASE_URL,
+  headers: { "Content-Type": "application/json" },
+});
 
-      if (data?.errors && typeof data.errors === "object") {
-        const lines = Object.entries(data.errors)
-          .flatMap(([field, msgs]) =>
-            (Array.isArray(msgs) ? msgs : [msgs]).map((m) => `${field}: ${m}`)
-          );
-        return lines.join("\n") || data.title || data.detail || `HTTP ${res.status}`;
-      }
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token");
+  if (token) config.headers.Authorization = `Bearer ${token}`;
+  return config;
+});
 
-      return (
-        data?.message ||
-        data?.title ||
-        data?.detail ||
-        (typeof data === "string" ? data : JSON.stringify(data))
+api.interceptors.response.use(
+  (res) => res,
+  (error) => {
+    if (!error.response) return Promise.reject(new Error("Server not reachable"));
+
+    const { data, status } = error.response;
+
+    if (data?.errors && typeof data.errors === "object") {
+      const lines = Object.entries(data.errors).flatMap(([field, msgs]) =>
+        (Array.isArray(msgs) ? msgs : [msgs]).map((m) => `${field}: ${m}`)
       );
+      return Promise.reject(new Error(lines.join("\n")));
     }
 
-    const text = await res.text();
-    return text || `HTTP ${res.status}`;
-  } catch {
-    return `HTTP ${res.status}`;
+    return Promise.reject(
+      new Error(data?.message || data?.title || data?.detail || `HTTP ${status}`)
+    );
   }
-}
+);
 
-export async function apiFetch(path, options = {}) {
-  const token = localStorage.getItem("token");
-
-  const headers = {
-    ...(options.body ? { "Content-Type": "application/json" } : {}),
-    ...(options.auth && token ? { Authorization: `Bearer ${token}` } : {}),
-    ...options.headers,
-  };
-
-  const res = await fetch(`${BASE_URL}${path}`, {
-    method: options.method || "GET",
-    headers,
-    body: options.body ? JSON.stringify(options.body) : undefined,
-    credentials: "omit",
+// ✅ helper që ti po e përdor kudo:
+export async function apiFetch(url, { method = "GET", body, auth = false } = {}) {
+  const res = await api.request({
+    url,
+    method,
+    data: body,
+    // auth flag e le “opsional”, interceptor e vendos tokenin automatikisht nëse ekziston
   });
-
-  if (!res.ok) {
-    const msg = await parseError(res);
-    throw new Error(msg);
-  }
-
-  if (res.status === 204) return null;
-
-  const contentType = res.headers.get("content-type") || "";
-  return contentType.includes("application/json") ? res.json() : res.text();
+  return res.data;
 }
+

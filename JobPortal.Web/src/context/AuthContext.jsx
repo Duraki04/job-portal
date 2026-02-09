@@ -15,10 +15,19 @@ export function AuthProvider({ children }) {
   });
 
   function login(payload) {
-    const { token, role, fullName, userId } = payload;
-    setToken(token);
+    const t = payload?.token;
+    const role = payload?.role ?? null;
+    const fullName = payload?.fullName ?? null;
+    const userId = payload?.userId ?? 0;
+
+    if (!t) {
+      throw new Error("Token missing. Login response is invalid.");
+    }
+
+    setToken(t);
     setUser({ role, fullName, userId });
-    localStorage.setItem("token", token);
+
+    localStorage.setItem("token", t);
     localStorage.setItem("user", JSON.stringify({ role, fullName, userId }));
   }
 
@@ -29,10 +38,20 @@ export function AuthProvider({ children }) {
     localStorage.removeItem("user");
   }
 
-  const value = useMemo(() => ({ token, user, login, logout }), [token, user]);
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  const value = useMemo(
+    () => ({ token, user, login, logout }),
+    [token, user]
+  );
+
+  return (
+    <AuthContext.Provider value={value}>
+      {children}
+    </AuthContext.Provider>
+  );
 }
 
 export function useAuth() {
-  return useContext(AuthContext);
+  const ctx = useContext(AuthContext);
+  if (!ctx) throw new Error("useAuth must be used within AuthProvider");
+  return ctx;
 }

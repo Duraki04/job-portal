@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { apiFetch } from "../../api/http";
+import { api } from "../../api/http";
 import { RefreshCw, FileText, ArrowRight, MapPin, Building2 } from "lucide-react";
 
 const PAGE_SIZE = 10;
@@ -43,17 +43,17 @@ function AppCard({ a }) {
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0">
           <div className="text-lg font-extrabold tracking-tight text-white line-clamp-2">
-            {a.jobTitle}
+            {a.jobTitle || "Job"}
           </div>
 
           <div className="mt-3 flex flex-wrap items-center gap-3 text-sm text-slate-300">
             <span className="inline-flex items-center gap-2">
               <Building2 className="h-4 w-4" />
-              {a.companyName}
+              {a.companyName || "Company"}
             </span>
             <span className="inline-flex items-center gap-2">
               <MapPin className="h-4 w-4" />
-              {a.jobCity} {a.isRemote ? "(Remote)" : ""}
+              {a.jobCity || "—"} {a.isRemote ? "(Remote)" : ""}
             </span>
           </div>
         </div>
@@ -92,24 +92,38 @@ export default function MyApplications() {
     return t <= 0 ? 1 : t;
   }, [total]);
 
+  function getToken() {
+    return localStorage.getItem("token");
+  }
+  function authHeaders() {
+    const token = getToken();
+    return token ? { Authorization: `Bearer ${token}` } : {};
+  }
+
   async function load() {
     setErr("");
     setLoading(true);
-    try {
-      // backend: GET /api/application/my-applications?page=1&pageSize=10
-      const res = await apiFetch(
-        `/api/application/my-applications?page=${page}&pageSize=${PAGE_SIZE}`,
-        { auth: true }
-      );
 
-      // expected: { items, total, page, pageSize }
-      const list = res?.items ?? res?.data ?? [];
-      const tot = res?.total ?? res?.count ?? list.length;
+    try {
+      const headers = authHeaders();
+
+      // ✅ Swagger: GET /api/Application/my-applications
+      // (me query params page & pageSize nëse backend i pranon)
+      const res = await api.get("/api/Application/my-applications", {
+        headers,
+        params: { page, pageSize: PAGE_SIZE },
+      });
+
+      const data = res.data;
+
+      // support: { items, total } OR direct array
+      const list = data?.items ?? data?.data ?? data ?? [];
+      const tot = data?.total ?? data?.count ?? (Array.isArray(list) ? list.length : 0);
 
       setItems(Array.isArray(list) ? list : []);
       setTotal(Number(tot) || 0);
     } catch (e) {
-      setErr(e.message || "Failed to load applications.");
+      setErr(e?.response?.data?.message || e?.message || "Failed to load applications.");
       setItems([]);
       setTotal(0);
     } finally {
@@ -140,7 +154,8 @@ export default function MyApplications() {
             Total: <span className="ml-1 text-white font-semibold">{total}</span>
           </span>
           <span className="badge">
-            Page: <span className="ml-1 text-white font-semibold">{page}</span> / {totalPages}
+            Page: <span className="ml-1 text-white font-semibold">{page}</span> /{" "}
+            {totalPages}
           </span>
         </div>
       </div>
@@ -153,7 +168,9 @@ export default function MyApplications() {
               <div className="text-sm font-extrabold text-rose-100">
                 Could not load applications
               </div>
-              <div className="mt-1 text-sm text-rose-200/90">{err}</div>
+              <div className="mt-1 text-sm text-rose-200/90 whitespace-pre-line">
+                {err}
+              </div>
             </div>
             <button className="btn-ghost" onClick={load} type="button">
               <RefreshCw className="h-4 w-4" />
@@ -192,7 +209,7 @@ export default function MyApplications() {
       ) : (
         <div className="grid gap-4 lg:grid-cols-2">
           {items.map((a) => (
-            <AppCard key={a.applicationId} a={a} />
+            <AppCard key={a.applicationId ?? `${a.jobId}-${a.appliedAt}`} a={a} />
           ))}
         </div>
       )}

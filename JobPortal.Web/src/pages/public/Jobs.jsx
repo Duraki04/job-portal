@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { apiFetch } from "../../api/http";
+import { api } from "../../api/http"; // ✅ kjo është e saktë për strukturën tënde
 import { Briefcase, MapPin, ArrowRight, RefreshCw } from "lucide-react";
 
 export default function Jobs() {
@@ -13,10 +13,10 @@ export default function Jobs() {
     setError("");
 
     try {
-      const res = await apiFetch("/api/Job"); // ✅ FIXED
-      setJobs(res);
+      const res = await api.get("/api/Job");
+      setJobs(Array.isArray(res.data) ? res.data : []);
     } catch (err) {
-      setError(err.message);
+      setError(err?.message || "Failed to load jobs.");
       setJobs([]);
     } finally {
       setLoading(false);
@@ -39,7 +39,7 @@ export default function Jobs() {
     return (
       <div className="glass p-10 text-center text-rose-200">
         <p className="font-bold">Could not load jobs</p>
-        <p className="text-sm mt-2">{error}</p>
+        <p className="text-sm mt-2 whitespace-pre-line">{error}</p>
         <button onClick={loadJobs} className="btn-primary mt-5">
           <RefreshCw size={16} />
           Retry
@@ -62,22 +62,20 @@ export default function Jobs() {
         <div key={job.id} className="glass p-6">
           <div className="flex items-center gap-3">
             <Briefcase />
-            <h3 className="text-xl font-bold">{job.title}</h3>
+            <h3 className="text-xl font-bold text-white">{job.title}</h3>
           </div>
 
           <div className="mt-3 text-sm text-slate-300">
-            {job.description?.substring(0, 120)}...
+            {(job.description || "").substring(0, 120)}
+            {(job.description || "").length > 120 ? "..." : ""}
           </div>
 
           <div className="mt-4 flex items-center gap-2 text-sm text-slate-400">
             <MapPin size={16} />
-            {job.city}
+            {job.city || "—"}
           </div>
 
-          <Link
-            to={`/jobs/${job.id}`}
-            className="btn-primary mt-5 inline-flex"
-          >
+          <Link to={`/jobs/${job.id}`} className="btn-primary mt-5 inline-flex">
             View Details
             <ArrowRight size={16} />
           </Link>

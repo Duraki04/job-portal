@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
-import { apiFetch } from "../../api/http";
+import { api } from "../../api/http";
 import {
   ClipboardList,
   RefreshCw,
@@ -11,7 +11,6 @@ import {
 } from "lucide-react";
 
 const PAGE_SIZE = 10;
-
 const STATUS = ["Pending", "Shortlisted", "Accepted", "Rejected"];
 
 function StatusPill({ status }) {
@@ -66,7 +65,6 @@ export default function EmployerApplications() {
   }, [total]);
 
   useEffect(() => {
-    // if jobId changes, reset page
     setPage(1);
   }, [jobId]);
 
@@ -74,20 +72,24 @@ export default function EmployerApplications() {
     setErr("");
     setLoading(true);
     try {
-      // ✅ your backend:
-      // GET /api/application/job/{jobId}?page=1&pageSize=10
-      const res = await apiFetch(
-        `/api/application/job/${jobId}?page=${page}&pageSize=${PAGE_SIZE}`,
-        { auth: true }
+      // ✅ Swagger: GET /api/Application/job/{jobId}?page=1&pageSize=10
+      const res = await api.get(
+        `/api/Application/job/${jobId}?page=${page}&pageSize=${PAGE_SIZE}`
       );
 
-      const list = res?.items ?? res?.data ?? [];
-      const tot = res?.total ?? res?.count ?? list.length;
+      const data = res.data;
+
+      // Backend mund të kthejë:
+      // 1) { items: [...], total: 123 }
+      // 2) { data: [...], total: 123 }
+      // 3) vetëm array [...]
+      const list = data?.items ?? data?.data ?? data ?? [];
+      const tot = data?.total ?? data?.count ?? (Array.isArray(list) ? list.length : 0);
 
       setItems(Array.isArray(list) ? list : []);
       setTotal(Number(tot) || 0);
     } catch (e) {
-      setErr(e.message || "Failed to load applications for this job.");
+      setErr(e?.message || "Failed to load applications for this job.");
       setItems([]);
       setTotal(0);
     } finally {
@@ -103,14 +105,11 @@ export default function EmployerApplications() {
   async function updateStatus(applicationId, status) {
     setUpdatingId(applicationId);
     try {
-      await apiFetch(`/api/application/${applicationId}/status`, {
-        method: "PATCH",
-        auth: true,
-        body: { status },
-      });
+      // ✅ Swagger: PATCH /api/Application/{applicationId}/status
+      await api.patch(`/api/Application/${applicationId}/status`, { status });
       await load();
     } catch (e) {
-      alert(e.message || "Failed to update status.");
+      alert(e?.message || "Failed to update status.");
     } finally {
       setUpdatingId(0);
     }
@@ -177,7 +176,7 @@ export default function EmployerApplications() {
               <div className="text-sm font-extrabold text-rose-100">
                 Could not load applications
               </div>
-              <div className="mt-1 text-sm text-rose-200/90">{err}</div>
+              <div className="mt-1 text-sm text-rose-200/90 whitespace-pre-line">{err}</div>
             </div>
             <button className="btn-ghost" onClick={load} type="button">
               <RefreshCw className="h-4 w-4" />

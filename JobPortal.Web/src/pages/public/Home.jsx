@@ -75,7 +75,6 @@ export default function Home() {
     <div className="space-y-10">
       {/* HERO */}
       <section className="relative overflow-hidden rounded-[32px] border border-white/10 bg-white/5 p-7 backdrop-blur sm:p-10">
-        {/* Decorative */}
         <div className="pointer-events-none absolute -top-32 -left-32 h-[360px] w-[360px] rounded-full bg-indigo-500/25 blur-[90px]" />
         <div className="pointer-events-none absolute -bottom-36 -right-28 h-[420px] w-[420px] rounded-full bg-fuchsia-500/20 blur-[110px]" />
 
@@ -120,7 +119,6 @@ export default function Home() {
               )}
             </div>
 
-            {/* quick highlights */}
             <div className="mt-6 grid gap-3 sm:grid-cols-3">
               <div className="badge justify-center">Role-based access</div>
               <div className="badge justify-center">Secure JWT auth</div>
@@ -128,7 +126,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Right panel: quick search */}
           <div className="glass rounded-3xl p-6 sm:p-7">
             <div className="flex items-center justify-between gap-3">
               <div>
@@ -185,7 +182,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* STATS */}
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <Stat icon={TrendingUp} title="Smart filtering" desc="Search by title, city, remote, salary & type." />
         <Stat icon={CheckCircle2} title="Easy apply" desc="Apply in seconds with optional cover letter." />
@@ -193,7 +189,6 @@ export default function Home() {
         <Stat icon={Briefcase} title="Employer tools" desc="Post jobs and manage applications fast." />
       </section>
 
-      {/* FEATURES */}
       <section className="grid gap-4 lg:grid-cols-3">
         <Feature
           title="Clean experience"
@@ -209,7 +204,6 @@ export default function Home() {
         />
       </section>
 
-      {/* ROLE CTA */}
       <section className="grid gap-4 lg:grid-cols-2">
         <RoleCard
           title="For Candidates"
@@ -227,7 +221,6 @@ export default function Home() {
         />
       </section>
 
-      {/* FINAL CTA */}
       <section className="section-card">
         <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
           <div>
@@ -253,7 +246,6 @@ export default function Home() {
   );
 }
 
-/* Small inline icon to avoid extra import noise */
 function UserPlusIcon() {
   return (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">

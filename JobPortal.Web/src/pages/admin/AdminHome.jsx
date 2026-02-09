@@ -71,7 +71,7 @@ export default function AdminHome() {
         <div className="relative">
           <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold text-slate-200">
             <Sparkles className="h-4 w-4" />
-            Admin Panel
+            Admin Area
           </div>
 
           <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
@@ -79,94 +79,107 @@ export default function AdminHome() {
           </h1>
 
           <p className="mt-3 text-sm text-slate-300 max-w-2xl">
-            Manage and oversee the platform: users, companies, jobs, and applications.
-            (We’ll connect the real admin APIs next.)
+            Manage the platform: users, companies, jobs, and system settings.
+            (Stats will become live after connecting Admin API endpoints.)
           </p>
 
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-            <Link to="/jobs" className="btn-primary">
+            <Link to="/admin" className="btn-primary">
+              <Crown className="h-4 w-4" />
+              Admin Dashboard
+            </Link>
+            <Link to="/jobs" className="btn-ghost">
               <BriefcaseBusiness className="h-4 w-4" />
               Browse Jobs
             </Link>
-
-            <button className="btn-ghost" type="button">
-              <Settings className="h-4 w-4" />
-              Admin Settings (soon)
-            </button>
+            <Link to="/companies" className="btn-ghost">
+              <Building2 className="h-4 w-4" />
+              Companies
+            </Link>
           </div>
 
-          <div className="mt-6 rounded-2xl border border-amber-500/30 bg-amber-500/10 p-4">
-            <div className="flex items-start gap-3">
-              <div className="grid h-10 w-10 place-items-center rounded-2xl bg-gradient-to-br from-amber-500 to-orange-500 shadow-[0_12px_26px_rgba(0,0,0,.25)]">
-                <Crown className="h-5 w-5 text-white" />
-              </div>
-              <div>
-                <div className="text-sm font-extrabold text-amber-100">
-                  Admin-only access
-                </div>
-                <div className="mt-1 text-sm text-amber-100/90">
-                  This area should be protected by role-based authorization (already enforced in routes).
-                </div>
-              </div>
-            </div>
+          <div className="mt-6 grid gap-3 sm:grid-cols-3">
+            <div className="badge justify-center">Role-based access</div>
+            <div className="badge justify-center">Admin controls</div>
+            <div className="badge justify-center">Secure JWT</div>
           </div>
         </div>
       </section>
 
-      {/* Stats (placeholders for now) */}
-      <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <StatCard title="Users" value="—" icon={Users} hint="Total registered users." />
-        <StatCard title="Companies" value="—" icon={Building2} hint="Employer profiles created." />
-        <StatCard title="Jobs" value="—" icon={BriefcaseBusiness} hint="Total job posts." />
-        <StatCard title="Applications" value="—" icon={ClipboardList} hint="Total applications submitted." />
+      {/* Stats placeholders */}
+      <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <StatCard
+          title="Total users"
+          value="—"
+          icon={Users}
+          hint="All registered accounts."
+        />
+        <StatCard
+          title="Total companies"
+          value="—"
+          icon={Building2}
+          hint="Registered employer companies."
+        />
+        <StatCard
+          title="Total jobs"
+          value="—"
+          icon={BriefcaseBusiness}
+          hint="Active job listings on the platform."
+        />
+        <StatCard
+          title="Applications"
+          value="—"
+          icon={ClipboardList}
+          hint="All applications submitted."
+        />
+        <StatCard
+          title="Security"
+          value="—"
+          icon={ShieldCheck}
+          hint="Auth & role-based protections."
+        />
+        <StatCard
+          title="Analytics"
+          value="—"
+          icon={BarChart3}
+          hint="KPIs once connected to API."
+        />
       </section>
 
-      {/* Actions (future pages) */}
-      <section className="grid gap-4 lg:grid-cols-4">
+      {/* Actions */}
+      <section className="grid gap-4 lg:grid-cols-3">
         <ActionCard
-          title="Users"
-          desc="View and manage accounts."
-          to="/admin"
+          title="Manage Users"
+          desc="View and manage registered users (candidates/employers)."
+          to="/admin/users"
           icon={Users}
           accent="from-indigo-500 to-sky-500"
         />
         <ActionCard
-          title="Companies"
-          desc="Review employer profiles."
-          to="/admin"
+          title="Manage Companies"
+          desc="View company profiles and employer accounts."
+          to="/admin/companies"
           icon={Building2}
           accent="from-fuchsia-500 to-rose-500"
         />
         <ActionCard
-          title="Jobs"
-          desc="Monitor job postings."
-          to="/admin"
-          icon={BriefcaseBusiness}
+          title="Platform Settings"
+          desc="System configuration and admin tools."
+          to="/admin/settings"
+          icon={Settings}
           accent="from-emerald-500 to-lime-500"
-        />
-        <ActionCard
-          title="Security"
-          desc="Audit access and roles."
-          to="/admin"
-          icon={ShieldCheck}
-          accent="from-slate-600 to-slate-900"
         />
       </section>
 
-      <section className="glass rounded-3xl p-6 sm:p-7">
-        <div className="flex items-start justify-between gap-4">
-          <div>
-            <div className="text-sm font-extrabold text-white">Next step</div>
-            <div className="mt-1 text-sm text-slate-300">
-              When you’re ready, we’ll add admin endpoints in C# (Users/Companies/Jobs overview)
-              and connect these stats + pages.
-            </div>
-          </div>
-
-          <div className="grid h-11 w-11 place-items-center rounded-2xl border border-white/10 bg-white/5">
-            <BarChart3 className="h-5 w-5 text-white" />
-          </div>
-        </div>
+      {/* Note */}
+      <section className="rounded-3xl border border-white/10 bg-white/5 p-6">
+        <div className="text-sm font-extrabold text-white">Note</div>
+        <p className="mt-2 text-sm text-slate-300">
+          Nëse nuk i ke krijuar ende routes si <span className="text-white font-semibold">/admin/users</span>,
+          <span className="text-white font-semibold"> /admin/companies</span> dhe{" "}
+          <span className="text-white font-semibold">/admin/settings</span>, krijoji ose ndrysho këto link-e
+          që të përputhen me AppRoutes.jsx.
+        </p>
       </section>
     </div>
   );
