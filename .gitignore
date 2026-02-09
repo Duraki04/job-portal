@@ -1,0 +1,18 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Build folders
+bin/
+obj/
+
+# Node
+node_modules/
+dist/
+
+# Environment files
+.env
+
+# Logs
+*.log
