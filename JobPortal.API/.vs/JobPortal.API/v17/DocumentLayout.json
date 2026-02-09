@@ -1,0 +1,411 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{4E2D8CA2-EDF1-1ECF-4958-C2AB10C5A3BA}|JobPortal.API.csproj|c:\\users\\kusht\\job_portal\\jobportal.api\\data\\dbseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4E2D8CA2-EDF1-1ECF-4958-C2AB10C5A3BA}|JobPortal.API.csproj|solutionrelative:data\\dbseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4E2D8CA2-EDF1-1ECF-4958-C2AB10C5A3BA}|JobPortal.API.csproj|c:\\users\\kusht\\job_portal\\jobportal.api\\controllers\\candidatecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4E2D8CA2-EDF1-1ECF-4958-C2AB10C5A3BA}|JobPortal.API.csproj|solutionrelative:controllers\\candidatecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\Migrations\\20260208232059_AddSkills.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Migrations\\20260208232059_AddSkills.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4E2D8CA2-EDF1-1ECF-4958-C2AB10C5A3BA}|JobPortal.API.csproj|c:\\users\\kusht\\job_portal\\jobportal.api\\controllers\\skillcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4E2D8CA2-EDF1-1ECF-4958-C2AB10C5A3BA}|JobPortal.API.csproj|solutionrelative:controllers\\skillcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4E2D8CA2-EDF1-1ECF-4958-C2AB10C5A3BA}|JobPortal.API.csproj|c:\\users\\kusht\\job_portal\\jobportal.api\\services\\skillservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4E2D8CA2-EDF1-1ECF-4958-C2AB10C5A3BA}|JobPortal.API.csproj|solutionrelative:services\\skillservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4E2D8CA2-EDF1-1ECF-4958-C2AB10C5A3BA}|JobPortal.API.csproj|c:\\users\\kusht\\job_portal\\jobportal.api\\interfaces\\iskillservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4E2D8CA2-EDF1-1ECF-4958-C2AB10C5A3BA}|JobPortal.API.csproj|solutionrelative:interfaces\\iskillservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4E2D8CA2-EDF1-1ECF-4958-C2AB10C5A3BA}|JobPortal.API.csproj|c:\\users\\kusht\\job_portal\\jobportal.api\\entities\\candidateskill.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4E2D8CA2-EDF1-1ECF-4958-C2AB10C5A3BA}|JobPortal.API.csproj|solutionrelative:entities\\candidateskill.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4E2D8CA2-EDF1-1ECF-4958-C2AB10C5A3BA}|JobPortal.API.csproj|c:\\users\\kusht\\job_portal\\jobportal.api\\entities\\skill.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4E2D8CA2-EDF1-1ECF-4958-C2AB10C5A3BA}|JobPortal.API.csproj|solutionrelative:entities\\skill.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4E2D8CA2-EDF1-1ECF-4958-C2AB10C5A3BA}|JobPortal.API.csproj|c:\\users\\kusht\\job_portal\\jobportal.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4E2D8CA2-EDF1-1ECF-4958-C2AB10C5A3BA}|JobPortal.API.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4E2D8CA2-EDF1-1ECF-4958-C2AB10C5A3BA}|JobPortal.API.csproj|c:\\users\\kusht\\job_portal\\jobportal.api\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4E2D8CA2-EDF1-1ECF-4958-C2AB10C5A3BA}|JobPortal.API.csproj|solutionrelative:data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4E2D8CA2-EDF1-1ECF-4958-C2AB10C5A3BA}|JobPortal.API.csproj|c:\\users\\kusht\\job_portal\\jobportal.api\\services\\companyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4E2D8CA2-EDF1-1ECF-4958-C2AB10C5A3BA}|JobPortal.API.csproj|solutionrelative:services\\companyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4E2D8CA2-EDF1-1ECF-4958-C2AB10C5A3BA}|JobPortal.API.csproj|c:\\users\\kusht\\job_portal\\jobportal.api\\interfaces\\icompanyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4E2D8CA2-EDF1-1ECF-4958-C2AB10C5A3BA}|JobPortal.API.csproj|solutionrelative:interfaces\\icompanyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4E2D8CA2-EDF1-1ECF-4958-C2AB10C5A3BA}|JobPortal.API.csproj|c:\\users\\kusht\\job_portal\\jobportal.api\\controllers\\companycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4E2D8CA2-EDF1-1ECF-4958-C2AB10C5A3BA}|JobPortal.API.csproj|solutionrelative:controllers\\companycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4E2D8CA2-EDF1-1ECF-4958-C2AB10C5A3BA}|JobPortal.API.csproj|c:\\users\\kusht\\job_portal\\jobportal.api\\dtos\\companypublicdetailsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4E2D8CA2-EDF1-1ECF-4958-C2AB10C5A3BA}|JobPortal.API.csproj|solutionrelative:dtos\\companypublicdetailsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4E2D8CA2-EDF1-1ECF-4958-C2AB10C5A3BA}|JobPortal.API.csproj|c:\\users\\kusht\\job_portal\\jobportal.api\\dtos\\companylistitemdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4E2D8CA2-EDF1-1ECF-4958-C2AB10C5A3BA}|JobPortal.API.csproj|solutionrelative:dtos\\companylistitemdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4E2D8CA2-EDF1-1ECF-4958-C2AB10C5A3BA}|JobPortal.API.csproj|c:\\users\\kusht\\job_portal\\jobportal.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{4E2D8CA2-EDF1-1ECF-4958-C2AB10C5A3BA}|JobPortal.API.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\Migrations\\20260208114647_AddUniqueApplicationConstraint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Migrations\\20260208114647_AddUniqueApplicationConstraint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4E2D8CA2-EDF1-1ECF-4958-C2AB10C5A3BA}|JobPortal.API.csproj|c:\\users\\kusht\\job_portal\\jobportal.api\\services\\applicationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4E2D8CA2-EDF1-1ECF-4958-C2AB10C5A3BA}|JobPortal.API.csproj|solutionrelative:services\\applicationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4E2D8CA2-EDF1-1ECF-4958-C2AB10C5A3BA}|JobPortal.API.csproj|c:\\users\\kusht\\job_portal\\jobportal.api\\controllers\\applicationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4E2D8CA2-EDF1-1ECF-4958-C2AB10C5A3BA}|JobPortal.API.csproj|solutionrelative:controllers\\applicationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4E2D8CA2-EDF1-1ECF-4958-C2AB10C5A3BA}|JobPortal.API.csproj|c:\\users\\kusht\\job_portal\\jobportal.api\\entities\\application.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4E2D8CA2-EDF1-1ECF-4958-C2AB10C5A3BA}|JobPortal.API.csproj|solutionrelative:entities\\application.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4E2D8CA2-EDF1-1ECF-4958-C2AB10C5A3BA}|JobPortal.API.csproj|c:\\users\\kusht\\job_portal\\jobportal.api\\entities\\enums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4E2D8CA2-EDF1-1ECF-4958-C2AB10C5A3BA}|JobPortal.API.csproj|solutionrelative:entities\\enums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4E2D8CA2-EDF1-1ECF-4958-C2AB10C5A3BA}|JobPortal.API.csproj|c:\\users\\kusht\\job_portal\\jobportal.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4E2D8CA2-EDF1-1ECF-4958-C2AB10C5A3BA}|JobPortal.API.csproj|solutionrelative:controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4E2D8CA2-EDF1-1ECF-4958-C2AB10C5A3BA}|JobPortal.API.csproj|c:\\users\\kusht\\job_portal\\jobportal.api\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4E2D8CA2-EDF1-1ECF-4958-C2AB10C5A3BA}|JobPortal.API.csproj|solutionrelative:entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CandidateController.cs",
+              "DocumentMoniker": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\Controllers\\CandidateController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CandidateController.cs",
+              "ToolTip": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\Controllers\\CandidateController.cs",
+              "RelativeToolTip": "Controllers\\CandidateController.cs",
+              "ViewState": "AgIAAHEAAAAAAAAAAAAwwIwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-08T23:27:50.755Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "20260208232059_AddSkills.cs",
+              "DocumentMoniker": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\Migrations\\20260208232059_AddSkills.cs",
+              "RelativeDocumentMoniker": "Migrations\\20260208232059_AddSkills.cs",
+              "ToolTip": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\Migrations\\20260208232059_AddSkills.cs",
+              "RelativeToolTip": "Migrations\\20260208232059_AddSkills.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-08T23:20:59.215Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "SkillController.cs",
+              "DocumentMoniker": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\Controllers\\SkillController.cs",
+              "RelativeDocumentMoniker": "Controllers\\SkillController.cs",
+              "ToolTip": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\Controllers\\SkillController.cs",
+              "RelativeToolTip": "Controllers\\SkillController.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAwwDQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-08T23:19:19.62Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "SkillService.cs",
+              "DocumentMoniker": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\Services\\SkillService.cs",
+              "RelativeDocumentMoniker": "Services\\SkillService.cs",
+              "ToolTip": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\Services\\SkillService.cs",
+              "RelativeToolTip": "Services\\SkillService.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAwwDUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-08T23:18:31.588Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ISkillService.cs",
+              "DocumentMoniker": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\Interfaces\\ISkillService.cs",
+              "RelativeDocumentMoniker": "Interfaces\\ISkillService.cs",
+              "ToolTip": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\Interfaces\\ISkillService.cs",
+              "RelativeToolTip": "Interfaces\\ISkillService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-08T23:18:13.774Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DbSeeder.cs",
+              "DocumentMoniker": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\Data\\DbSeeder.cs",
+              "RelativeDocumentMoniker": "Data\\DbSeeder.cs",
+              "ToolTip": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\Data\\DbSeeder.cs",
+              "RelativeToolTip": "Data\\DbSeeder.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAwwBwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-08T11:50:08.273Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CandidateSkill.cs",
+              "DocumentMoniker": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\Entities\\CandidateSkill.cs",
+              "RelativeDocumentMoniker": "Entities\\CandidateSkill.cs",
+              "ToolTip": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\Entities\\CandidateSkill.cs",
+              "RelativeToolTip": "Entities\\CandidateSkill.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-08T23:15:58.112Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Skill.cs",
+              "DocumentMoniker": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\Entities\\Skill.cs",
+              "RelativeDocumentMoniker": "Entities\\Skill.cs",
+              "ToolTip": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\Entities\\Skill.cs",
+              "RelativeToolTip": "Entities\\Skill.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-08T23:15:11.835Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "CompanyService.cs",
+              "DocumentMoniker": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\Services\\CompanyService.cs",
+              "RelativeDocumentMoniker": "Services\\CompanyService.cs",
+              "ToolTip": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\Services\\CompanyService.cs",
+              "RelativeToolTip": "Services\\CompanyService.cs",
+              "ViewState": "AgIAAGcAAAAAAAAAAADwv3AAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-08T13:36:19.5Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "CompanyPublicDetailsDto.cs",
+              "DocumentMoniker": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\DTOs\\CompanyPublicDetailsDto.cs",
+              "RelativeDocumentMoniker": "DTOs\\CompanyPublicDetailsDto.cs",
+              "ToolTip": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\DTOs\\CompanyPublicDetailsDto.cs",
+              "RelativeToolTip": "DTOs\\CompanyPublicDetailsDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-08T13:31:34.953Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "CompanyListItemDto.cs",
+              "DocumentMoniker": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\DTOs\\CompanyListItemDto.cs",
+              "RelativeDocumentMoniker": "DTOs\\CompanyListItemDto.cs",
+              "ToolTip": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\DTOs\\CompanyListItemDto.cs",
+              "RelativeToolTip": "DTOs\\CompanyListItemDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-08T13:31:07.512Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "Data\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "Data\\AppDbContext.cs",
+              "ViewState": "AgIAAFsAAAAAAAAAAAAwwHYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-08T11:45:32.157Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAIoAAAAAAAAAAAAwwK4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-08T11:31:07.452Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "CompanyController.cs",
+              "DocumentMoniker": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\Controllers\\CompanyController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CompanyController.cs",
+              "ToolTip": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\Controllers\\CompanyController.cs",
+              "RelativeToolTip": "Controllers\\CompanyController.cs",
+              "ViewState": "AgIAAEUAAAAAAAAAAADwv04AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-08T13:32:04.545Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ICompanyService.cs",
+              "DocumentMoniker": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\Interfaces\\ICompanyService.cs",
+              "RelativeDocumentMoniker": "Interfaces\\ICompanyService.cs",
+              "ToolTip": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\Interfaces\\ICompanyService.cs",
+              "RelativeToolTip": "Interfaces\\ICompanyService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-08T13:35:30.76Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "20260208114647_AddUniqueApplicationConstraint.cs",
+              "DocumentMoniker": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\Migrations\\20260208114647_AddUniqueApplicationConstraint.cs",
+              "RelativeDocumentMoniker": "Migrations\\20260208114647_AddUniqueApplicationConstraint.cs",
+              "ToolTip": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\Migrations\\20260208114647_AddUniqueApplicationConstraint.cs",
+              "RelativeToolTip": "Migrations\\20260208114647_AddUniqueApplicationConstraint.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-08T11:46:47.633Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ApplicationService.cs",
+              "DocumentMoniker": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\Services\\ApplicationService.cs",
+              "RelativeDocumentMoniker": "Services\\ApplicationService.cs",
+              "ToolTip": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\Services\\ApplicationService.cs",
+              "RelativeToolTip": "Services\\ApplicationService.cs",
+              "ViewState": "AgIAAKsAAAAAAAAAAAAAAMQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-08T11:42:48.271Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-02-08T11:31:38.043Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Application.cs",
+              "DocumentMoniker": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\Entities\\Application.cs",
+              "RelativeDocumentMoniker": "Entities\\Application.cs",
+              "ToolTip": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\Entities\\Application.cs",
+              "RelativeToolTip": "Entities\\Application.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-08T11:43:22.018Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "ApplicationController.cs",
+              "DocumentMoniker": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\Controllers\\ApplicationController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ApplicationController.cs",
+              "ToolTip": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\Controllers\\ApplicationController.cs",
+              "RelativeToolTip": "Controllers\\ApplicationController.cs",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAwwF0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-08T11:42:03.856Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Enums.cs",
+              "DocumentMoniker": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\Entities\\Enums.cs",
+              "RelativeDocumentMoniker": "Entities\\Enums.cs",
+              "ToolTip": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\Entities\\Enums.cs",
+              "RelativeToolTip": "Entities\\Enums.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-08T11:41:38.917Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "Controllers\\AuthController.cs",
+              "ViewState": "AgIAAI0AAAAAAAAAAAAwwKgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-08T11:39:34.999Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\Entities\\User.cs",
+              "RelativeDocumentMoniker": "Entities\\User.cs",
+              "ToolTip": "C:\\Users\\kusht\\Job_Portal\\JobPortal.API\\Entities\\User.cs",
+              "RelativeToolTip": "Entities\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-08T11:39:12.02Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
